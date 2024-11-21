@@ -9,7 +9,7 @@ let numRects2 = 30, baseRadius2 = 190, sizeFactor2 = 8, freqRange2 = [90, 350];
 let numRects3 = 70, baseRadius3 = 400, sizeFactor3 = 10, freqRange3 = [0, 90];
 
 function preload() {
-  song = loadSound('Jcole instrumental.mp3');
+  song = loadSound('Jcole instrumental.MP3');
 }
 
 function setup() {

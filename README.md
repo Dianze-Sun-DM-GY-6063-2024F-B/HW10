@@ -1,64 +1,49 @@
-# p5.js multi sketch template
+HW10A
+Frequency Mapping:
+The program divides the audio spectrum into three frequency ranges: low, mid, and high frequencies. The amplitude data of each range is mapped using map() to generate specific visual effects, such as the size, color, and position of rectangles. This ensures that different elements of the music (bass, mid-range, treble) trigger distinct visual responses.
 
-By putting different sketch.js and index.html files in directories we can more easily switch between multiple experiments.
+Multi-Layered Circular Design:
+The visualization is built around three circular layers corresponding to the frequency ranges:
 
----
+Low-Frequency Circle: Located near the center, featuring fewer rectangles. The amplitude influences the size and color of the rectangles, emphasizing the bass rhythm.
+Mid-Frequency Circle: Positioned in the middle layer, with a moderate number of rectangles and more dynamic range to represent mid-range sounds.
+High-Frequency Circle: The outermost layer, containing the most rectangles with rapid changes. It uses bright colors and intricate details to reflect treble elements.
+Dynamic Shapes and Colors:
 
-This is a README file that can be used to describe and document your assignment.
+Each circle consists of multiple rectangles whose angles, positions, sizes, and colors are dynamically generated based on spectrum data.
+Polar coordinates (cos(angle) and sin(angle)) are used to calculate the position of each rectangle, while map() maps amplitude to the height and color of the rectangles.
+These shapes respond to real-time changes in the spectrum, creating a rhythmic visual experience.
+Rotational Dynamics:
+Each circular layer rotates at different speeds, controlled by the variable r and implemented with rotate(). The low-frequency layer rotates slowly, while the high-frequency layer rotates faster. This creates a layered, rhythmically dynamic visual effect that aligns with the music's tempo and frequency.
 
-Markdown Cheatsheet (from [https://www.markdownguide.org/cheat-sheet/](https://www.markdownguide.org/cheat-sheet/)):
+Real-Time Updates and Rendering:
+In the draw() function, spectrum data is updated frame by frame, and the visuals are redrawn in sync with the music. background(0) ensures the canvas is cleared each frame to prevent overlapping, maintaining a clean, smooth animation.
 
----
----
+User Interaction:
+The program includes a mousePressed() function that allows users to toggle music playback with a mouse click, adding an interactive element to the experience.
 
-# Heading1
-## Heading2
-### Heading3
-#### Heading4
-##### Heading5
-###### Heading6
+HW10B
+Peak Analysis:
 
-**bold text**
+The program uses song.getPeaks() to extract an array of audio peaks (amplitude values) from the music file. These peaks represent the waveform of the song over time, capturing the dynamic changes in volume.
+The number of peaks is scaled to fit the canvas width, allowing a detailed visual representation of the song's waveform.
+Waveform Representation:
 
-*italicized text*
+Each peak is represented as a vertical line. The height of the line corresponds to the peak's amplitude, mapped from -1 to 1 using map().
+Lines are distributed horizontally across the canvas using map() to transform the peak index into the appropriate x-coordinate. This creates a timeline-like visual that stretches the song's waveform from left to right.
+Dynamic Rotation:
 
-~~strikethrough text~~
+Each line rotates around its origin based on the corresponding peak value, scaled by a rotationFactor (e.g., 90 degrees). Higher peaks result in greater rotation, adding a sense of movement to the otherwise static waveform.
+The rotation introduces a creative, abstract interpretation of the waveform, enhancing the aesthetic experience.
+Color Mapping:
 
-Ordered List:
-1. First item
-2. Second item
-3. Third item
+The stroke color of each line is determined by the peak value. Negative peaks are darker, while positive peaks are lighter, mapped from 0 to 255. This grayscale effect provides a subtle gradient, highlighting the variation in amplitude across the waveform.
+Static Layout:
 
-Unordered List:
-- First item
-- Second item
-- Third item
+Unlike animations, this program uses noLoop() to create a single, static frame of the waveform visualization. This approach focuses on presenting the song’s overall structure as an artistic snapshot rather than a dynamic display.
+Typography:
 
-`short code block`
+The program adds a title at the top of the canvas, displaying the song's name and artist. This text is positioned centrally using textAlign(CENTER) and styled for clarity with fill(255) and a large font size.
+Centered Composition:
 
-```
-extended code block
-fun() {
-  return 0
-}
-```
-
-Link:  
-[linked text](https://www.example.com)
-
-
-Image with url:  
-![image description](https://dm-gy-6063-2024f-b.github.io/assets/homework/02/clark-espaco-modulado-00.jpg)
-
-
-Image on repo:  
-![image description](./file-name.jpg)
-
-
-To start a new line, add two spaces at the end of a line, like this:  
-this is a new line.
-
-
-To start a new paragraph, leave an empty line between two lines of text.
-
-This is a new paragraph.
+By translating the origin to the center of the canvas, the visualization creates a balanced and symmetrical layout. This enhances the overall visual impact and makes the rotation of each line more visually cohesive
